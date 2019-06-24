@@ -1,27 +1,20 @@
-// pages/home/home.js
-//获取应用实例
-const app = getApp();
+// pages/authorize/index.js
+var app = getApp();
 const api = require("../../config/api.js");
-
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		imgUrls: [
-			'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-			'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-			'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-		],
-		indicatorDots: false,
-		autoplay: true,
+
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+
 	},
 
 	/**
@@ -72,26 +65,50 @@ Page({
 	onShareAppMessage: function () {
 
 	},
+	rejectLogin: function (e) {
+		wx.navigateBack({
 
+		})
+	},
+	bindGetUserInfo: function (e) {
+		if (!e.detail.userInfo) {
+			return;
+		}
+		this.login();
+	},
+	login: function () {
+		let _this = this;
+		wx.login({
+			success: function (res) {
+				console.log(res);
+				if (res.code) {
+					_this.getUserInfo();
+					
+					// app.request({
+					// 	url: api.getLoginToken,
+					// 	method: "post",
+					// 	data: {
+					// 		code: res.code,
+					// 	}
+					// }).then(function (res) {
+					// 	console.log(res);
+					// })
+				}
+			}
+		})
+	},
 
-	changeIndicatorDots: function (e) {
-		this.setData({
-			indicatorDots: !this.data.indicatorDots
-		})
-	},
-	changeAutoplay: function (e) {
-		this.setData({
-			autoplay: !this.data.autoplay
-		})
-	},
-	intervalChange: function (e) {
-		this.setData({
-			interval: e.detail.value
-		})
-	},
-	durationChange: function (e) {
-		this.setData({
-			duration: e.detail.value
+	getUserInfo: function() {
+		console.log(22)
+		wx.getUserInfo({
+			success: res => {
+				console.log(res);
+				wx.setStorageSync('userInfo', res.userInfo);
+				wx.navigateBack({
+					delta: 1
+				})
+				// 可以将 res 发送给后台解码出 unionId
+			}
 		})
 	}
 })

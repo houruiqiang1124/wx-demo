@@ -4,6 +4,7 @@
 		"pages/class/class",
 		"pages/shopping/shopping",
 		"pages/my/index",
+		"pages/authorize/index",
 		"pages/index/index",
 		"pages/logs/logs"
 	],
