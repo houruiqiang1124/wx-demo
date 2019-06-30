@@ -1,2 +1,17 @@
 <!--pages/class/class.wxml-->
-<text>pages/class/class.wxml</text>
+<view class='class-box'>
+	<view class='class-left-box'>
+		<scroll-view scroll-y="true" style='height: {{navHeight}}px'>
+			<view wx:for="{{classification}}" class='class-navList {{navId == item.id ? "active" : ""}}' data-id="{{item.id}}"  bindtap='navChange'>
+                <view class='class-name' data-id="{{item.id}}">{{item.name}}</view>
+            </view>
+		</scroll-view>
+	</view>
+	<view class='class-right-box'>
+		<view class='goods-list' wx:for="{{goodsList}}">
+			<image src="{{item.pic}}" class='goods-list-img'></image>
+			<text>{{item.name}}</text>
+		</view>
+		<text wx:if="{{!goodsList.length>=1}}">暂无数据</text>
+	</view>
+</view>

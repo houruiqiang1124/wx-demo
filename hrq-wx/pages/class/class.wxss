@@ -1,1 +1,50 @@
 /* pages/class/class.wxss */
+
+.class-box {
+	display: flex;
+}
+
+.class-left-box {
+
+	width: 25%;
+	background-color: #ECECEC;
+}
+
+.nav-scroll {
+	height: 100%;
+}
+
+
+.class-right-box {
+	display: flex;
+	justify-content: space-around;
+}
+
+.class-navList {
+	height: 100rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.active {
+	background:#fff;
+	border-left:4rpx solid #FF5777
+}
+
+.active .class-name {
+	color: #FF5777;
+}
+
+.goods-list {
+	margin: 20rpx 20rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.goods-list-img {
+	width: 100rpx;
+	height: 100rpx;
+}

@@ -9,19 +9,21 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		imgUrls: [
-			'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
-			'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-			'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+		noticeList: [
+			{title: "商城新开张，优惠多多，戳我查看详情", id: 1},
+			{ title: "今日份活动，满100减50，行动起来吧", id: 2},
+			{ title: "手到快，手慢无，快快下单吧", id: 3},
 		],
-		indicatorDots: false,
-		autoplay: true,
+		bannerList: [],
+		goodsList: []
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.getBannerList();
+		this.getGoodList();
 	},
 
 	/**
@@ -73,25 +75,33 @@ Page({
 
 	},
 
+	// 获取banner
+	getBannerList: function() {
+		api.getBannerList().then(res => {
+			console.log(res);
+			if(res.code == 0) {
+				this.setData({
+					bannerList: res.data
+				})
+			}
+		})
+	},
 
-	changeIndicatorDots: function (e) {
-		this.setData({
-			indicatorDots: !this.data.indicatorDots
-		})
-	},
-	changeAutoplay: function (e) {
-		this.setData({
-			autoplay: !this.data.autoplay
-		})
-	},
-	intervalChange: function (e) {
-		this.setData({
-			interval: e.detail.value
-		})
-	},
-	durationChange: function (e) {
-		this.setData({
-			duration: e.detail.value
+	// 爆品推荐
+	getGoodList: function() {
+		let arr = [];
+		api.getGoodList().then(res => {
+			console.log(res);
+			if (res.code == 0) {
+				for(let i = 0; i < res.data.length; i++) {
+					if (res.data[i].recommendStatusStr == "推荐") {
+						arr.push(res.data[i]);
+					}
+				}
+				this.setData({
+					goodsList: arr
+				})
+			}
 		})
 	}
 })
