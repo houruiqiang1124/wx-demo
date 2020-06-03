@@ -1,26 +1,13 @@
-const request = require("./request.js");
+const request = require("../utils/request.js");
 
+const BASE_URL = 'https://api.it120.cc/demoTest/';	// 接口请求的基本路径
 
 // api请求
-const goodsCategory = data => request({url: "/shop/goods/category/all", method:"get", data });
+// 示例
+const goodsCategory = data => request({url: `${BASE_URL}/shop/goods/category/all`, method:"post", data });
 
-const getGoodList = data => request({ url: "/shop/goods/list", data});
-
-const getBannerList = data => request({ url: "/banner/list", method:"get", data})
-
+// 导出
 module.exports = {
-
-	userLogin: "/user/m/login", // 用户登录
-	
-	userWxinfo: "/user/wxinfo", // 获取当前用户openid,unionid
-
-	getLoginToken: "/user/wxapp/login", //登录获取Token
-	
-	goodsList: "/shop/goods/list", // 商品列表
-	
-	goodsCategory, // 商品分类
-
-	getGoodList, // 商品列表
-
-	getBannerList, // banner
+	BASE_URL,
+	goodsCategory
 }

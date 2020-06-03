@@ -1,7 +1,4 @@
 //app.js
-let config = require("./config.js");
-let api = require("./config/api.js");
-
 App({
 	onLaunch: function () {
 		// 展示本地存储能力
@@ -30,29 +27,6 @@ App({
 		// 		}
 		// 	}
 		// })
-	},
-	
-	/**
-	 * http请求
-	 */
-	request: function(params = {}) {
-		return new Promise(function (resolve, reject) {
-			wx.request({
-				url: config.host + params.url,
-				data: params.data || {},
-				header: {
-					"Content-Type": "application/x-www-form-urlencoded"
-				},
-				method: params.method,
-				success: function(res) {
-					resolve(res.data);
-				},
-				fail: function(res) {
-					console.log(res);
-					reject(res);
-				}
-			})
-		})
 	},
 
 	globalData: {
