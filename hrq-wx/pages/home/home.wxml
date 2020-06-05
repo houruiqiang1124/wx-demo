@@ -1,3 +1,22 @@
-<view>
-    <text>首页</text>
-</view>
+<view class="swiper-wrapper">
+    <swiper 
+      indicator-dots="{{true}}"
+      indicator-color="rgba(221,0,34,.3)"
+      indicator-active-color="#DD0022"
+      autoplay="{{false}}" 
+      interval="{{5000}}" 
+      duration="{{500}}"
+      current="{{posterList.length>2?1:0}}"
+      previous-margin="96rpx"
+      next-margin="96rpx"
+      bindchange="swiperChange"
+    >
+      <block wx:for="{{posterList}}" wx:key="*this">
+        <swiper-item>
+          <view class="swiper-item {{currentIndex==index?'swiper-item-active':''}}">
+            <image class="" src="{{item.image}}" mode="scaleToFill" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>

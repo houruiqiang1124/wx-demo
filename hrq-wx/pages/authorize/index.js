@@ -1,6 +1,5 @@
 // pages/authorize/index.js
 var app = getApp();
-const api = require("../../config/api.js");
 Page({
 
 	/**

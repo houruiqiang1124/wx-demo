@@ -8,7 +8,25 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		
+		currentIndex: 0,
+    posterList: [
+      {
+        id: '1', 
+        image: 'https://mina.qn.woody.club/%E8%87%B3%E5%B0%8A%E5%8D%A11.png'
+      },
+      {
+        id: '2', 
+        image: 'https://mina.qn.woody.club/%E8%87%B3%E5%B0%8A%E5%8D%A12.png'
+      },
+      {
+        id: '3', 
+        image: 'https://mina.qn.woody.club/%E4%BA%B2%E5%AD%90%E5%8D%A11.png'
+      },
+      {
+        id: '4', 
+        image: 'https://mina.qn.woody.club/%E4%BA%B2%E5%AD%90%E5%8D%A12.png'
+      },
+    ]
 	},
 
 	/**
@@ -65,4 +83,11 @@ Page({
 	onShareAppMessage: function () {
 
 	},
+	//函数
+swiperChange(event){
+    let {current} = event.detail;
+    this.setData({
+      currentIndex: current
+    })
+  },
 })
